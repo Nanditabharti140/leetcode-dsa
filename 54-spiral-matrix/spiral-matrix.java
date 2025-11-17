@@ -8,40 +8,43 @@ class Solution {
         if (matrix == null || matrix.length == 0) return result;
 
         int top = 0;
-        int bottom = matrix.length - 1;
+        int m = matrix.length;
         int left = 0;
-        int right = matrix[0].length - 1;
+        int n = matrix[0].length;
+        int bottom = m-1;
+        int right = n-1;
+        int total = m*n;
+        int count = 0;
 
-        while (top <= bottom && left <= right) {
+        while (count < total) {
 
             // Traverse from Left → Right
-            for (int i = left; i <= right; i++) {
+            for (int i = left; i <= right && count < total; i++) {
                 result.add(matrix[top][i]);
+                count++;
             }
             top++;
 
             // Traverse from Top → Bottom
-            for (int i = top; i <= bottom; i++) {
+            for (int i = top; i <= bottom && count < total; i++) {
                 result.add(matrix[i][right]);
+                count++;
             }
             right--;
 
-            // Check boundaries to avoid duplicates
-            if (top <= bottom) {
                 // Traverse Right → Left
-                for (int i = right; i >= left; i--) {
+                for (int i = right; i >= left && count < total; i--) {
                     result.add(matrix[bottom][i]);
+                    count++;
                 }
                 bottom--;
-            }
 
-            if (left <= right) {
                 // Traverse Bottom → Top
-                for (int i = bottom; i >= top; i--) {
+                for (int i = bottom; i >= top && count < total; i--) {
                     result.add(matrix[i][left]);
+                    count++;
                 }
                 left++;
-            }
         }
 
         return result;
