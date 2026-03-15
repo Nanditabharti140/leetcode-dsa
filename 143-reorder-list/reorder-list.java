@@ -37,15 +37,16 @@ class Solution {
         ListNode t2 = head2;
         ListNode dummy = new ListNode(-1);
         ListNode d = dummy;
-        while(t1 != null){
-            d.next = t1;
-            d = t1;
-            t1 = t1.next;
-            if(t2 == null) break;
-            d.next = t2;
-            d = t2;
-            t2 = t2.next;
+        while(t1 != null && t2 != null){
+           d.next = t1;
+           d = t1;
+           t1 = t1.next;
+           d.next = t2;
+           d = t2;
+           t2 = t2.next;
         }
+        if(t1 == null) d.next = t2;
+        else d.next = t1;
         head = dummy.next;
         
     }
