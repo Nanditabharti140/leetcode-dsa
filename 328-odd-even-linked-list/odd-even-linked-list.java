@@ -17,8 +17,8 @@ class Solution {
         ListNode d2 = even;
         while(t != null){
             d1.next = t;
+            d1 = t;
             t = t.next;
-            d1 = d1.next;
             d2.next = t;
             if(t != null) t = t.next;
             d2 = d2.next;
