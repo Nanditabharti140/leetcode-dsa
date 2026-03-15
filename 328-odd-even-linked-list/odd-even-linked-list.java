@@ -10,6 +10,7 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
+        if(head == null || head.next == null) return head;
         ListNode t = head;
         ListNode odd = new ListNode(-1);
         ListNode even = new ListNode(-2);
@@ -20,8 +21,10 @@ class Solution {
             d1 = t;
             t = t.next;
             d2.next = t;
-            if(t != null) t = t.next;
-            d2 = d2.next;
+            if(t != null ){
+            d2 = t;
+            t = t.next;
+            }
         }
         d1.next = even.next;
         return odd.next;
